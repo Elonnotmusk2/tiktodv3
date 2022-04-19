@@ -1,6 +1,8 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from os import system, name
 import chromedriver_binary
+
 
 from time import time, strftime, gmtime, sleep
 import pyfiglet, os, threading
@@ -26,6 +28,11 @@ if auto == 1 or auto == 2 or auto == 3 or auto == 4:
     time_elapsed = strftime('%H:%M:%S', gmtime(time() - start))
 
     chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    d = webdriver.Chrome('/home/PycharmProjects/chromedriver',chrome_options=chrome_options)
+    d.get('https://www.google.nl/')
     chrome_options.add_argument("--mute-audio")
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
